@@ -14,8 +14,9 @@ A full-stack MERN application for tracking employee attendance using live selfie
 
 ## Live Links
 
-- Frontend: `<Vercel URL here>`
-- Backend API: `<Render URL here>`
+* Frontend: https://attendance-management-system-xi-topaz.vercel.app
+* Backend API: https://attendance-backend-8gqx.onrender.com
+* Production API Base URL: https://attendance-backend-8gqx.onrender.com/api
 
 ## Architecture Overview
 
