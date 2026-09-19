@@ -1,3 +1,4 @@
+import { useSelector } from 'react-redux';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import ProtectedRoute from '../components/ProtectedRoute';
 import Login from '../pages/Login';
@@ -7,12 +8,24 @@ import ManagerDashboard from '../pages/manager/ManagerDashboard';
 import AdminDashboard from '../pages/admin/AdminDashboard';
 
 const AppRoutes = () => {
+  const { isAuthenticated, user } = useSelector((state) => state.auth);
+  const dashboardPath = user?.role ? `/${user.role}` : '/login';
+
   return (
     <Routes>
-      <Route path="/" element={<Navigate to="/login" replace />} />
+      <Route
+        path="/"
+        element={<Navigate to={isAuthenticated ? dashboardPath : '/login'} replace />}
+      />
 
-      <Route path="/login" element={<Login />} />
-      <Route path="/signup" element={<Signup />} />
+      <Route
+        path="/login"
+        element={isAuthenticated ? <Navigate to={dashboardPath} replace /> : <Login />}
+      />
+      <Route
+        path="/signup"
+        element={isAuthenticated ? <Navigate to={dashboardPath} replace /> : <Signup />}
+      />
 
       <Route
         path="/employee"

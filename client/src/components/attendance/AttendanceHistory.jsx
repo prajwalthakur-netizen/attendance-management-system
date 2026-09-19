@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { socket } from '../../utils/socket';
+import { useState } from 'react';
+
 import { useGetMyAttendanceQuery } from '../../features/attendance/attendanceApi';
 
 const AttendanceHistory = () => {
@@ -7,22 +7,12 @@ const AttendanceHistory = () => {
   const [dateTo, setDateTo] = useState('');
   const [page, setPage] = useState(1);
 
-  const { data, isLoading, refetch } = useGetMyAttendanceQuery({
+  const { data, isLoading } = useGetMyAttendanceQuery({
     from: dateFrom || undefined,
     to: dateTo || undefined,
     page,
     limit: 10,
   });
-
-  useEffect(() => {
-    const handleUpdate = () => refetch();
-
-    socket.on('attendance-updated', handleUpdate);
-
-    return () => {
-      socket.off('attendance-updated', handleUpdate);
-    };
-  }, []);
 
   return (
     <>

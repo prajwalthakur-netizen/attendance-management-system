@@ -1,5 +1,4 @@
-import { useState, useEffect } from 'react';
-import { socket } from '../../utils/socket';
+import { useState } from 'react';
 import CameraCapture from '../../components/attendance/CameraCapture';
 import LocationCapture from '../../components/attendance/LocationCapture';
 import {
@@ -20,16 +19,6 @@ const PunchInOut = () => {
   const today = new Date().toISOString().split('T')[0];
   const { data, refetch } = useGetMyAttendanceQuery({ from: today, to: today });
   const todayRecord = data?.records?.[0];
-
-  useEffect(() => {
-    const handleUpdate = () => refetch();
-
-    socket.on('attendance-updated', handleUpdate);
-
-    return () => {
-      socket.off('attendance-updated', handleUpdate);
-    };
-  }, []);
 
   const resetCapture = () => {
     setMode(null);
