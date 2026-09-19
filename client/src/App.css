@@ -1,0 +1,398 @@
+/* ===== Navbar ===== */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1e293b;
+  color: #fff;
+  padding: 0.9rem 1.5rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.navbar-brand {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.navbar-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.role-badge {
+  background-color: #2563eb;
+  padding: 0.15rem 0.6rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  margin-left: 0.4rem;
+}
+
+.navbar-info button {
+  background-color: #ef4444;
+  color: #fff;
+  border: none;
+  padding: 0.4rem 0.9rem;
+  border-radius: 6px;
+}
+
+/* ===== Auth Pages ===== */
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 90vh;
+  padding: 1rem;
+}
+
+.auth-form {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.auth-form h2 {
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.auth-form input,
+.auth-form select {
+  padding: 0.65rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+
+.auth-form button {
+  background-color: #2563eb;
+  color: #fff;
+  border: none;
+  padding: 0.7rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.auth-form button:disabled {
+  background-color: #93c5fd;
+  cursor: not-allowed;
+}
+
+.auth-form p {
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.error-text {
+  color: #dc2626;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.info-text {
+  color: #059669;
+  font-size: 0.9rem;
+  margin: 0.5rem 0;
+}
+
+/* ===== Dashboard General ===== */
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+section {
+  background: #fff;
+  margin: 1.5rem 1.5rem;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06);
+  overflow-x: auto;
+}
+
+.welcome-text {
+  padding: 0 1.5rem;
+  color: #475569;
+  font-size: 0.95rem;
+}
+
+section h3 {
+  margin-bottom: 1rem;
+}
+
+/* ===== Punch In/Out ===== */
+.status-valid {
+  color: #059669;
+  font-weight: 600;
+}
+
+.status-invalid {
+  color: #dc2626;
+  font-weight: 600;
+}
+
+.today-summary {
+  background: #f0f9ff;
+  padding: 0.8rem;
+  border-radius: 8px;
+  margin: 0.8rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.today-summary p {
+  font-size: 0.9rem;
+}
+
+.punch-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.punch-actions button,
+.capture-buttons button {
+  background-color: #2563eb;
+  color: #fff;
+  border: none;
+  padding: 0.7rem 1.4rem;
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+
+.punch-actions button:disabled {
+  background-color: #d1d5db;
+  cursor: not-allowed;
+}
+
+.capture-flow {
+  margin-top: 1rem;
+}
+
+.capture-buttons {
+  display: flex;
+  gap: 0.8rem;
+  margin-top: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.capture-buttons button:last-child {
+  background-color: #6b7280;
+}
+
+/* ===== Camera / Location ===== */
+.camera-capture,
+.location-capture {
+  margin: 0.8rem 0;
+}
+
+.camera-video {
+  width: 100%;
+  max-width: 350px;
+  border-radius: 8px;
+  display: block;
+  margin-bottom: 0.6rem;
+  background: #000;
+}
+
+.captured-image {
+  width: 100%;
+  max-width: 350px;
+  border-radius: 8px;
+  display: block;
+  margin-bottom: 0.6rem;
+}
+
+.camera-capture button,
+.location-capture button {
+  background-color: #059669;
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+.success-text {
+  color: #059669;
+  font-size: 0.85rem;
+  margin-top: 0.4rem;
+}
+
+/* ===== Overtime ===== */
+.overtime-form {
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.overtime-form input {
+  padding: 0.55rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  flex: 1;
+  min-width: 140px;
+}
+
+.overtime-form button {
+  background-color: #2563eb;
+  color: #fff;
+  border: none;
+  padding: 0.55rem 1.2rem;
+  border-radius: 6px;
+}
+
+/* ===== Tables ===== */
+.data-table {
+  width: 100%;
+  min-width: 600px;
+  font-size: 0.88rem;
+}
+
+.data-table th,
+.data-table td {
+  padding: 0.6rem;
+  border-bottom: 1px solid #e5e7eb;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.data-table th {
+  background-color: #f1f5f9;
+  font-weight: 600;
+}
+
+.selfie-thumb {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.data-table button {
+  background-color: #2563eb;
+  color: #fff;
+  border: none;
+  padding: 0.3rem 0.7rem;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  margin-right: 0.3rem;
+}
+
+.data-table td button:nth-child(2) {
+  background-color: #dc2626;
+}
+
+/* ===== Pagination ===== */
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.pagination button {
+  background-color: #e2e8f0;
+  border: none;
+  padding: 0.4rem 0.9rem;
+  border-radius: 6px;
+}
+
+.pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ===== Loader ===== */
+.loader-container {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.spinner {
+  width: 36px;
+  height: 36px;
+  border: 4px solid #e2e8f0;
+  border-top-color: #2563eb;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ===== Mobile Responsive ===== */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .dashboard-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  section,
+  .punch-container {
+    margin: 0.8rem;
+    padding: 1rem;
+  }
+
+  .punch-actions {
+    flex-direction: column;
+  }
+
+  .punch-actions button,
+  .capture-buttons button {
+    width: 100%;
+  }
+
+  .overtime-form {
+    flex-direction: column;
+  }
+
+  .overtime-form input {
+    width: 100%;
+  }
+
+  .today-summary {
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .camera-video,
+  .captured-image {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .auth-form {
+    padding: 1.5rem;
+  }
+
+  .navbar-brand {
+    font-size: 1rem;
+  }
+}
