@@ -1,6 +1,7 @@
 const User = require('../models/User');
 const generateToken = require('../utils/generateToken');
 const logger = require('../utils/logger');
+const { getIO } = require('../config/socket');
 
 // @desc   Register new user
 // @route  POST /api/auth/signup
@@ -25,6 +26,8 @@ const signup = async (req, res, next) => {
     const token = generateToken(user._id, user.role);
 
     logger.info(`New user registered: ${user.email} (${user.role})`);
+
+    getIO().emit('user-updated', { type: 'created', userId: user._id });
 
     res.status(201).json({
       success: true,

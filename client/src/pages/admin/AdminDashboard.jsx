@@ -1,10 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { socket } from '../../utils/socket';
 import {
   useGetAllUsersQuery,
   useUpdateUserStatusMutation,
   useAssignManagerMutation,
+  useDeleteUserMutation,
 } from '../../features/users/userApi';
 import { useGetTeamAttendanceQuery } from '../../features/attendance/attendanceApi';
 import DailyReport from '../../components/reports/DailyReport';
@@ -16,43 +16,21 @@ const AdminDashboard = () => {
   const [roleFilter, setRoleFilter] = useState('');
   const [page, setPage] = useState(1);
 
-  const { data: usersData, isLoading: loadingUsers, refetch: refetchUsers } = useGetAllUsersQuery({
+  const { data: usersData, isLoading: loadingUsers } = useGetAllUsersQuery({
     role: roleFilter || undefined,
     page,
     limit: 10,
   });
-  const {
-    data: attendanceData,
-    isLoading: loadingAttendance,
-    refetch: refetchAttendance,
-  } = useGetTeamAttendanceQuery({
+  const { data: attendanceData, isLoading: loadingAttendance } = useGetTeamAttendanceQuery({
     page: 1,
     limit: 10,
   });
 
   const [updateUserStatus] = useUpdateUserStatusMutation();
   const [assignManager] = useAssignManagerMutation();
+  const [deleteUser, { isLoading: isDeleting }] = useDeleteUserMutation();
 
   const managers = usersData?.users?.filter((u) => u.role === 'manager') || [];
-
-  useEffect(() => {
-    const handleAttendanceUpdate = () => {
-      refetchAttendance();
-    };
-    const handleUserUpdate = () => {
-      refetchUsers();
-    };
-
-    socket.on('attendance-updated', handleAttendanceUpdate);
-    socket.on('overtime-updated', handleAttendanceUpdate);
-    socket.on('user-updated', handleUserUpdate);
-
-    return () => {
-      socket.off('attendance-updated', handleAttendanceUpdate);
-      socket.off('overtime-updated', handleAttendanceUpdate);
-      socket.off('user-updated', handleUserUpdate);
-    };
-  }, []);
 
   const handleStatusToggle = async (id, currentStatus) => {
     try {
@@ -67,6 +45,17 @@ const AdminDashboard = () => {
       await assignManager({ id, managerId: managerId || null }).unwrap();
     } catch (err) {
       alert(err?.data?.message || 'Assign failed');
+    }
+  };
+
+  const handleDelete = async (id, name) => {
+    if (!window.confirm(`Remove ${name}? This will deactivate their account and remove them from all lists.`)) {
+      return;
+    }
+    try {
+      await deleteUser(id).unwrap();
+    } catch (err) {
+      alert(err?.data?.message || 'Remove failed');
     }
   };
 
@@ -100,6 +89,7 @@ const AdminDashboard = () => {
                 <th>Manager</th>
                 <th>Active</th>
                 <th>Assign Manager</th>
+                <th>Remove</th>
               </tr>
             </thead>
             <tbody>
@@ -127,6 +117,17 @@ const AdminDashboard = () => {
                           </option>
                         ))}
                       </select>
+                    )}
+                  </td>
+                  <td>
+                    {u.role !== 'admin' && (
+                      <button
+                        className="danger-button"
+                        disabled={isDeleting}
+                        onClick={() => handleDelete(u._id, u.name)}
+                      >
+                        Remove
+                      </button>
                     )}
                   </td>
                 </tr>
